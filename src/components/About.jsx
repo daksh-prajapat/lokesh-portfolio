@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FiAward, FiUsers, FiCode, FiBookOpen, FiCalendar, FiHeart, FiCoffee, FiGlobe } from 'react-icons/fi';
+import { FiAward, FiUsers, FiCode, FiBookOpen, FiCalendar, FiHeart, FiGlobe } from 'react-icons/fi';
 import { SiReact, SiJavascript, SiTailwindcss } from 'react-icons/si';
 
 const About = () => {
@@ -21,7 +21,6 @@ const About = () => {
 
   const personalInfo = [
     { icon: FiCalendar, label: 'Experience', value: '10+ Months' },
-    { icon: FiCoffee, label: 'Coffee Consumed', value: '500+ Cups' },
     { icon: FiGlobe, label: 'Available For', value: 'Remote Work' },
     { icon: FiHeart, label: 'Passion', value: 'Web Development' },
   ];
@@ -52,7 +51,7 @@ const About = () => {
   return (
     <section id="about" className="relative py-20 lg:py-28 overflow-hidden scroll-mt-16 lg:scroll-mt-20 bg-white dark:bg-gray-950">
       
-      {/* Consistent Background - Matching Hero & Navbar */}
+      {/* Consistent Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-950 dark:via-gray-900 dark:to-blue-950/20 -z-20" />
       
       {/* Animated Shapes */}
@@ -208,12 +207,12 @@ const About = () => {
               a lasting impression. When I'm not coding, I love to explore new technologies.
             </motion.p>
 
-            {/* Personal Info Grid */}
+            {/* Personal Info Grid - 3 items now */}
             <motion.div
               variants={containerVariants}
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
-              className="grid grid-cols-2 gap-4 mb-8"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8"
             >
               {personalInfo.map((info, index) => (
                 <motion.div
