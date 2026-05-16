@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { 
@@ -32,6 +32,7 @@ const Skills = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(4);
+  const sliderRef = useRef(null);
 
   const skills = [
     { name: 'React', icon: SiReact, color: 'text-blue-500', level: 85, description: 'Frontend Library', years: '10+ months' },
@@ -77,6 +78,37 @@ const Skills = () => {
   const goToSlide = (index) => {
     setCurrentIndex(index);
   };
+
+  // Auto-slide effect with pause on hover
+  useEffect(() => {
+    if (totalPages <= 1) return;
+    
+    let interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % totalPages);
+    }, 3000); // 3 seconds me auto slide
+    
+    const sliderElement = sliderRef.current;
+    
+    const pauseSlide = () => {
+      clearInterval(interval);
+    };
+    
+    const resumeSlide = () => {
+      clearInterval(interval);
+      interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % totalPages);
+      }, 3000);
+    };
+    
+    sliderElement?.addEventListener('mouseenter', pauseSlide);
+    sliderElement?.addEventListener('mouseleave', resumeSlide);
+    
+    return () => {
+      clearInterval(interval);
+      sliderElement?.removeEventListener('mouseenter', pauseSlide);
+      sliderElement?.removeEventListener('mouseleave', resumeSlide);
+    };
+  }, [totalPages]);
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -177,9 +209,8 @@ const Skills = () => {
       {/* Base Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-950 dark:via-gray-900 dark:to-blue-950/20 -z-20" />
       
-      {/* Animated Floating Orbs - Visible Effect */}
+      {/* Animated Floating Orbs */}
       <div className="absolute inset-0 -z-15">
-        {/* Orb 1 - Blue - Moving Left to Right */}
         <motion.div
           animate={{ 
             x: [-50, 50, -50],
@@ -190,7 +221,6 @@ const Skills = () => {
           className="absolute top-10 left-20 w-80 h-80 bg-blue-500 rounded-full filter blur-3xl opacity-25 dark:opacity-35"
         />
         
-        {/* Orb 2 - Purple - Moving Right to Left */}
         <motion.div
           animate={{ 
             x: [50, -50, 50],
@@ -201,7 +231,6 @@ const Skills = () => {
           className="absolute bottom-10 right-20 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl opacity-25 dark:opacity-35"
         />
         
-        {/* Orb 3 - Pink - Center Floating */}
         <motion.div
           animate={{ 
             y: [-40, 40, -40],
@@ -212,7 +241,6 @@ const Skills = () => {
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-pink-500 rounded-full filter blur-3xl opacity-20 dark:opacity-25"
         />
 
-        {/* Orb 4 - Cyan - Diagonal Movement */}
         <motion.div
           animate={{ 
             x: [-30, 60, -30],
@@ -223,7 +251,6 @@ const Skills = () => {
           className="absolute top-1/3 right-1/4 w-72 h-72 bg-cyan-500 rounded-full filter blur-3xl opacity-20 dark:opacity-30"
         />
 
-        {/* Orb 5 - Indigo - Slow Floating */}
         <motion.div
           animate={{ 
             y: [-20, 50, -20],
@@ -275,8 +302,8 @@ const Skills = () => {
           </p>
         </motion.div>
 
-        {/* Slider Container */}
-        <div className="relative px-4 sm:px-8">
+        {/* Slider Container with ref for hover detection */}
+        <div ref={sliderRef} className="relative px-4 sm:px-8">
           
           {/* Previous Button */}
           {totalPages > 1 && (
