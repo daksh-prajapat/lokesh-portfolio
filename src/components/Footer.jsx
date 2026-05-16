@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FiHeart, FiArrowUp, FiGithub, FiLinkedin, FiTwitter, FiMail, FiInstagram } from 'react-icons/fi';
+import { FiHeart, FiArrowUp, FiGithub, FiLinkedin, FiMail, FiMessageCircle } from 'react-icons/fi';
 
 const Footer = () => {
   const [ref, inView] = useInView({
@@ -18,11 +18,10 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: FiGithub, link: 'https://github.com/lokeshprajapat', label: 'GitHub', color: 'hover:text-gray-900 dark:hover:text-white' },
-    { icon: FiLinkedin, link: 'https://linkedin.com/in/lokeshprajapat', label: 'LinkedIn', color: 'hover:text-blue-600' },
-    { icon: FiTwitter, link: 'https://twitter.com/lokeshprajapat', label: 'Twitter', color: 'hover:text-sky-500' },
-    { icon: FiInstagram, link: 'https://instagram.com/lokeshprajapat', label: 'Instagram', color: 'hover:text-pink-500' },
-    { icon: FiMail, link: 'mailto:prajapatlokesh08112003@gmail.com', label: 'Email', color: 'hover:text-red-500' }
+    { icon: FiGithub, link: 'https://github.com/daksh-prajapat', label: 'GitHub', color: 'hover:text-gray-900 dark:hover:text-white' },
+    { icon: FiLinkedin, link: 'https://www.linkedin.com/in/lokesh-prajapat-354352312', label: 'LinkedIn', color: 'hover:text-blue-600' },
+    { icon: FiMail, link: 'mailto:prajapatlokesh08112003@gmail.com', label: 'Email', color: 'hover:text-red-500' },
+    { icon: FiMessageCircle, link: 'https://wa.me/919214510791', label: 'WhatsApp', color: 'hover:text-green-500' }
   ];
 
   const quickLinks = [
@@ -59,7 +58,7 @@ const Footer = () => {
         />
       </div>
 
-      {/* Back to Top Button - Fixed Positioning */}
+      {/* Back to Top Button */}
       <motion.button
         onClick={scrollToTop}
         initial={{ opacity: 0, scale: 0 }}
@@ -153,7 +152,7 @@ const Footer = () => {
             </ul>
           </motion.div>
 
-          {/* Contact Info */}
+          {/* Contact Info - WhatsApp Only */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -198,11 +197,13 @@ const Footer = () => {
                 transition={{ delay: 0.4 }}
               >
                 <a 
-                  href="tel:+919214510791" 
-                  className="flex items-center justify-center md:justify-start gap-2 text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:translate-x-1"
+                  href="https://wa.me/919214510791" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center md:justify-start gap-2 text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-all duration-300 hover:translate-x-1"
                 >
-                  <span className="text-xl">📞</span>
-                  <span>+91 92145 10791</span>
+                  <span className="text-xl">💬</span>
+                  <span>Chat on WhatsApp</span>
                 </a>
               </motion.li>
             </ul>
