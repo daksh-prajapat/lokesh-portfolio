@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { FiGithub, FiLinkedin, FiTwitter, FiMail, FiDownload, FiChevronDown, FiEye } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail, FiDownload, FiChevronDown } from 'react-icons/fi';
 import { SiReact, SiJavascript, SiTailwindcss, SiHtml5 } from 'react-icons/si';
 
 const Hero = () => {
@@ -8,9 +8,8 @@ const Hero = () => {
   const opacity = useTransform(scrollY, [0, 300], [1, 0.5]);
 
   const socialLinks = [
-    { icon: FiGithub, link: 'https://github.com/lokeshprajapat', color: 'hover:text-gray-900 dark:hover:text-white', bg: 'hover:bg-gray-100 dark:hover:bg-gray-800' },
-    { icon: FiLinkedin, link: 'https://linkedin.com/in/lokeshprajapat', color: 'hover:text-blue-600', bg: 'hover:bg-blue-50 dark:hover:bg-blue-950/30' },
-    { icon: FiTwitter, link: 'https://twitter.com/lokeshprajapat', color: 'hover:text-sky-500', bg: 'hover:bg-sky-50 dark:hover:bg-sky-950/30' },
+    { icon: FiGithub, link: 'https://github.com/daksh-prajapat', color: 'hover:text-gray-900 dark:hover:text-white', bg: 'hover:bg-gray-100 dark:hover:bg-gray-800' },
+    { icon: FiLinkedin, link: 'https://www.linkedin.com/in/lokesh-prajapat-354352312', color: 'hover:text-blue-600', bg: 'hover:bg-blue-50 dark:hover:bg-blue-950/30' },
     { icon: FiMail, link: 'mailto:prajapatlokesh08112003@gmail.com', color: 'hover:text-red-500', bg: 'hover:bg-red-50 dark:hover:bg-red-950/30' },
   ];
 
@@ -135,7 +134,7 @@ const Hero = () => {
               Creating responsive, accessible, and performant web applications that users love to interact with.
             </motion.p>
 
-            {/* CTA Buttons - Mobile + Desktop Working */}
+            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -154,7 +153,7 @@ const Hero = () => {
                 Hire Me
               </motion.button>
 
-              {/* View Resume Button - Mobile & Desktop */}
+              {/* View Resume Button */}
               <a
                 href="https://drive.google.com/file/d/1PlRirP6dHZhLih_Orgx9oZOpbvhmpupA/view"
                 target="_blank"
@@ -164,7 +163,7 @@ const Hero = () => {
                 📄 View Resume
               </a>
 
-              {/* Download CV Button - Mobile & Desktop */}
+              {/* Download CV Button */}
               <a
                 href="https://drive.google.com/uc?export=download&id=1PlRirP6dHZhLih_Orgx9oZOpbvhmpupA"
                 download
@@ -214,19 +213,26 @@ const Hero = () => {
               <motion.div
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-2xl blur-2xl opacity-60"
+                className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full blur-2xl opacity-60"
               />
 
-              {/* Image Container */}
-              <div className="relative w-full h-full bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl p-1 backdrop-blur-sm">
+              {/* Image Container - Rounded Circle */}
+              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl">
+                {/* Animated Rotating Border */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 rounded-full border-2 border-dashed border-blue-500/50"
+                />
+                
                 <img
                   src="/images/profile.jpg"
                   alt="Lokesh Prajapat"
-                  className="w-full h-full object-cover rounded-2xl shadow-2xl border-2 border-white/30 dark:border-gray-800/30"
+                  className="w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-500"
                 />
 
                 {/* Shine Effect on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent rounded-full opacity-0 hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
               </div>
 
               {/* Experience Badge */}
@@ -235,7 +241,7 @@ const Hero = () => {
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ delay: 1, duration: 0.5, type: "spring" }}
                 whileHover={{ scale: 1.1, rotate: -5 }}
-                className="absolute -left-3 lg:-left-5 -top-3 bg-white dark:bg-gray-900 rounded-2xl p-2 lg:p-3 shadow-xl border border-gray-200 dark:border-gray-800 backdrop-blur-sm"
+                className="absolute -left-3 lg:-left-5 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-900 rounded-2xl p-2 lg:p-3 shadow-xl border border-gray-200 dark:border-gray-800 backdrop-blur-sm z-20"
               >
                 <div className="text-center">
                   <div className="text-lg lg:text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">10+</div>
@@ -250,7 +256,7 @@ const Hero = () => {
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ delay: 1.2, duration: 0.5, type: "spring" }}
                 whileHover={{ scale: 1.1, rotate: 5 }}
-                className="absolute -right-3 lg:-right-5 -bottom-3 bg-white dark:bg-gray-900 rounded-2xl p-2 lg:p-3 shadow-xl border border-gray-200 dark:border-gray-800 backdrop-blur-sm"
+                className="absolute -right-3 lg:-right-5 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-900 rounded-2xl p-2 lg:p-3 shadow-xl border border-gray-200 dark:border-gray-800 backdrop-blur-sm z-20"
               >
                 <div className="text-center">
                   <div className="text-lg lg:text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">10+</div>
@@ -265,7 +271,7 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.4, duration: 0.5 }}
                 whileHover={{ scale: 1.05 }}
-                className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-900 rounded-full px-3 py-1.5 shadow-lg border border-gray-200 dark:border-gray-800 flex items-center gap-1.5"
+                className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-900 rounded-full px-3 py-1.5 shadow-lg border border-gray-200 dark:border-gray-800 flex items-center gap-1.5 z-20 whitespace-nowrap"
               >
                 <div className="flex gap-0.5">
                   {[...Array(5)].map((_, i) => (
