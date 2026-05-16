@@ -171,98 +171,101 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+        {/* Grid - Mobile me center, Desktop me left-right */}
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12">
           
-          {/* Left Side - Contact Info Cards */}
+          {/* Left Side - Contact Info Cards - Mobile Center */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
-            className="space-y-6"
+            className="flex flex-col items-center lg:items-start w-full"
           >
-            {contactInfo.map((info, index) => (
-              <motion.a
-                key={index}
-                variants={itemVariants}
-                href={info.link || '#'}
-                target={info.link && info.link.includes('mail.google.com') ? '_blank' : info.link && info.link.startsWith('http') ? '_blank' : '_self'}
-                rel="noopener noreferrer"
-                className={`block ${!info.link ? 'cursor-default' : 'cursor-pointer'} w-full`}
-              >
-                <motion.div 
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  className="group relative bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-200 dark:border-gray-800 overflow-hidden"
+            <div className="w-full max-w-md lg:max-w-none space-y-6">
+              {contactInfo.map((info, index) => (
+                <motion.a
+                  key={index}
+                  variants={itemVariants}
+                  href={info.link || '#'}
+                  target={info.link && info.link.includes('mail.google.com') ? '_blank' : info.link && info.link.startsWith('http') ? '_blank' : '_self'}
+                  rel="noopener noreferrer"
+                  className={`block ${!info.link ? 'cursor-default' : 'cursor-pointer'} w-full`}
                 >
                   <motion.div 
-                    className={`absolute inset-0 bg-gradient-to-r ${info.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} 
-                  />
-                  
-                  <div className={`absolute -inset-0.5 bg-gradient-to-r ${info.color} rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition duration-500`} />
-                  
-                  <div className="relative z-10 flex items-start gap-4">
-                    <motion.div 
-                      whileHover={{ rotate: 360, scale: 1.1 }}
-                      transition={{ duration: 0.5 }}
-                      className={`p-3 rounded-xl bg-gradient-to-r ${info.color} shadow-lg`}
-                    >
-                      <info.icon className="w-6 h-6 text-white" />
-                    </motion.div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-1">{info.title}</h3>
-                      <p className="text-gray-600 dark:text-gray-300 font-medium">{info.value}</p>
-                      <p className="text-gray-500 dark:text-gray-500 text-sm mt-1">{info.details}</p>
-                    </div>
-                    {info.link && (
-                      <motion.div 
-                        initial={{ x: -10, opacity: 0 }}
-                        whileHover={{ x: 0, opacity: 1 }}
-                        className="opacity-0 group-hover:opacity-100 transition-all duration-300"
-                      >
-                        <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
-                          <FiSend className="w-4 h-4 text-gray-600 dark:text-gray-400 group-hover:text-white transition-all duration-300" />
-                        </div>
-                      </motion.div>
-                    )}
-                  </div>
-                </motion.div>
-              </motion.a>
-            ))}
-
-            {/* Social Links Section - Instagram Removed */}
-            <motion.div
-              variants={itemVariants}
-              className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-800"
-            >
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Connect With Me</h3>
-              <div className="flex flex-wrap gap-4">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={index}
-                    href={social.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ y: -8, scale: 1.15 }}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={inView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ delay: 0.5 + index * 0.05 }}
-                    className={`p-3 bg-gray-100 dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 text-gray-700 dark:text-gray-300 ${social.color} ${social.bg}`}
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    className="group relative bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-200 dark:border-gray-800 overflow-hidden"
                   >
-                    <social.icon className="w-5 h-5" />
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
+                    <motion.div 
+                      className={`absolute inset-0 bg-gradient-to-r ${info.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} 
+                    />
+                    
+                    <div className={`absolute -inset-0.5 bg-gradient-to-r ${info.color} rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition duration-500`} />
+                    
+                    <div className="relative z-10 flex items-center justify-center lg:justify-start gap-4">
+                      <motion.div 
+                        whileHover={{ rotate: 360, scale: 1.1 }}
+                        transition={{ duration: 0.5 }}
+                        className={`p-3 rounded-xl bg-gradient-to-r ${info.color} shadow-lg`}
+                      >
+                        <info.icon className="w-6 h-6 text-white" />
+                      </motion.div>
+                      <div className="text-center lg:text-left">
+                        <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-1">{info.title}</h3>
+                        <p className="text-gray-600 dark:text-gray-300 font-medium break-all">{info.value}</p>
+                        <p className="text-gray-500 dark:text-gray-500 text-sm mt-1">{info.details}</p>
+                      </div>
+                      {info.link && (
+                        <motion.div 
+                          initial={{ x: -10, opacity: 0 }}
+                          whileHover={{ x: 0, opacity: 1 }}
+                          className="opacity-0 group-hover:opacity-100 transition-all duration-300"
+                        >
+                          <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
+                            <FiSend className="w-4 h-4 text-gray-600 dark:text-gray-400 group-hover:text-white transition-all duration-300" />
+                          </div>
+                        </motion.div>
+                      )}
+                    </div>
+                  </motion.div>
+                </motion.a>
+              ))}
+
+              {/* Social Links Section */}
+              <motion.div
+                variants={itemVariants}
+                className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-800 text-center lg:text-left"
+              >
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Connect With Me</h3>
+                <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+                  {socialLinks.map((social, index) => (
+                    <motion.a
+                      key={index}
+                      href={social.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ y: -8, scale: 1.15 }}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={inView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ delay: 0.5 + index * 0.05 }}
+                      className={`p-3 bg-gray-100 dark:bg-gray-800 rounded-xl hover:shadow-lg transition-all duration-300 text-gray-700 dark:text-gray-300 ${social.color} ${social.bg}`}
+                    >
+                      <social.icon className="w-5 h-5" />
+                    </motion.a>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
 
-          {/* Right Side - Contact Form */}
+          {/* Right Side - Contact Form - Mobile Center */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3, type: "spring", stiffness: 100 }}
-            className="w-full"
+            className="flex justify-center lg:block w-full"
           >
-            <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 lg:p-8 shadow-lg border border-gray-200 dark:border-gray-800">
-              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center lg:text-left">Send Me a Message</h3>
+            <div className="w-full max-w-md lg:max-w-none bg-white dark:bg-gray-900 rounded-2xl p-6 lg:p-8 shadow-lg border border-gray-200 dark:border-gray-800">
+              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">Send Me a Message</h3>
               
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
                 <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.2 }}>
