@@ -135,7 +135,7 @@ const Hero = () => {
               Creating responsive, accessible, and performant web applications that users love to interact with.
             </motion.p>
 
-            {/* CTA Buttons with Dropdown */}
+            {/* CTA Buttons - Mobile + Desktop Working */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -149,57 +149,29 @@ const Hero = () => {
                 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-6 lg:px-8 py-2.5 lg:py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-sm lg:text-base overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                className="px-6 lg:px-8 py-2.5 lg:py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-sm lg:text-base shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                <span className="relative z-10">Hire Me</span>
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"
-                  initial={{ x: "100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
+                Hire Me
               </motion.button>
 
-              {/* Resume Dropdown Button */}
-              <div className="relative group">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-6 lg:px-8 py-2.5 lg:py-3.5 bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-semibold text-sm lg:text-base hover:border-blue-600 dark:hover:border-blue-600 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300"
-                >
-                  <FiDownload size={16} />
-                  Resume
-                  <svg 
-                    className="w-4 h-4 ml-1 transition-transform duration-300 group-hover:rotate-180" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </motion.button>
-                
-                {/* Dropdown Menu */}
-                <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-20">
-                  <a
-                    href="https://drive.google.com/file/d/1PlRirP6dHZhLih_Orgx9oZOpbvhmpupA/view"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-t-xl transition-all duration-200 hover:pl-5"
-                  >
-                    <FiEye size={14} />
-                    View Resume
-                  </a>
-                  <a
-                    href="https://drive.google.com/uc?export=download&id=1PlRirP6dHZhLih_Orgx9oZOpbvhmpupA"
-                    download
-                    className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-b-xl transition-all duration-200 hover:pl-5"
-                  >
-                    <FiDownload size={14} />
-                    Download CV
-                  </a>
-                </div>
-              </div>
+              {/* View Resume Button - Mobile & Desktop */}
+              <a
+                href="https://drive.google.com/file/d/1PlRirP6dHZhLih_Orgx9oZOpbvhmpupA/view"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 lg:px-8 py-2.5 lg:py-3.5 bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-semibold text-sm lg:text-base hover:border-green-600 dark:hover:border-green-600 hover:text-green-600 transition-all duration-300"
+              >
+                📄 View Resume
+              </a>
+
+              {/* Download CV Button - Mobile & Desktop */}
+              <a
+                href="https://drive.google.com/uc?export=download&id=1PlRirP6dHZhLih_Orgx9oZOpbvhmpupA"
+                download
+                className="px-6 lg:px-8 py-2.5 lg:py-3.5 bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-semibold text-sm lg:text-base hover:border-blue-600 dark:hover:border-blue-600 hover:text-blue-600 transition-all duration-300"
+              >
+                ⬇️ Download CV
+              </a>
             </motion.div>
 
             {/* Social Links */}

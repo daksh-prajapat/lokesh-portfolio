@@ -1,7 +1,7 @@
 # Lokesh Prajapat - Portfolio
 
 ## 🎯 Live Demo
-🔗 [View Portfolio]() *(Deploy karne ke baad link daal dena)*
+🔗 [View Portfolio](https://lokesh-portfolio-amber.vercel.app/)
 
 ## 📌 About
 This is my **personal portfolio website** showcasing my skills, projects, and experience as a Frontend Developer.
