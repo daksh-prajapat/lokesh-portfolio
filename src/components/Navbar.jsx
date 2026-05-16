@@ -49,6 +49,21 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Smooth scroll function with menu close
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    const targetId = href.substring(1);
+    const element = document.getElementById(targetId);
+    if (element) {
+      // Close menu first
+      setIsOpen(false);
+      // Small delay to ensure menu closes before scrolling
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  };
+
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
@@ -63,6 +78,7 @@ const Navbar = () => {
           {/* Logo */}
           <motion.a
             href="#home"
+            onClick={(e) => handleNavClick(e, '#home')}
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, type: 'spring', stiffness: 200 }}
@@ -89,6 +105,7 @@ const Navbar = () => {
               <motion.a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 initial={{ opacity: 0, y: -30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.08 }}
@@ -141,14 +158,14 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Fixed with proper click handling */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
+            transition={{ duration: 0.3 }}
             className="md:hidden bg-white dark:bg-gray-950 shadow-lg border-t border-gray-200 dark:border-gray-800"
           >
             <div className="px-4 py-4 space-y-2">
@@ -156,10 +173,10 @@ const Navbar = () => {
                 <motion.a
                   key={link.name}
                   href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  onClick={() => setIsOpen(false)}
+                  transition={{ delay: index * 0.05 }}
                   className={`block px-4 py-3 rounded-xl text-base font-semibold transition-all duration-300 ${
                     activeSection === link.href.substring(1)
                       ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-md'
