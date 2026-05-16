@@ -3,15 +3,12 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { 
   FiMail, 
-  FiPhone, 
   FiMapPin, 
   FiSend, 
   FiGithub, 
-  FiLinkedin, 
-  FiTwitter,
+  FiLinkedin,
   FiMessageCircle,
-  FiCheckCircle,
-  FiInstagram
+  FiCheckCircle
 } from 'react-icons/fi';
 
 const Contact = () => {
@@ -68,18 +65,9 @@ const Contact = () => {
       gradient: 'from-purple-500/10 to-pink-500/10'
     },
     {
-      icon: FiPhone,
-      title: 'Phone',
-      value: '+91 92145 10791',
-      details: 'Mon-Sat, 10AM - 7PM',
-      color: 'from-green-500 to-emerald-500',
-      link: 'tel:+919214510791',
-      gradient: 'from-green-500/10 to-emerald-500/10'
-    },
-    {
       icon: FiMessageCircle,
       title: 'WhatsApp',
-      value: '+91 92145 10791',
+      value: 'Click to chat on WhatsApp',
       details: 'Quick response on WhatsApp',
       color: 'from-green-600 to-teal-500',
       link: 'https://wa.me/919214510791',
@@ -88,10 +76,8 @@ const Contact = () => {
   ];
 
   const socialLinks = [
-    { icon: FiGithub, link: 'https://github.com/lokeshprajapat', label: 'GitHub', color: 'hover:text-gray-900 dark:hover:text-white', bg: 'hover:bg-gray-100 dark:hover:bg-gray-800' },
-    { icon: FiLinkedin, link: 'https://linkedin.com/in/lokeshprajapat', label: 'LinkedIn', color: 'hover:text-blue-600', bg: 'hover:bg-blue-50 dark:hover:bg-blue-950/30' },
-    { icon: FiTwitter, link: 'https://twitter.com/lokeshprajapat', label: 'Twitter', color: 'hover:text-sky-500', bg: 'hover:bg-sky-50 dark:hover:bg-sky-950/30' },
-    { icon: FiInstagram, link: 'https://instagram.com/lokeshprajapat', label: 'Instagram', color: 'hover:text-pink-500', bg: 'hover:bg-pink-50 dark:hover:bg-pink-950/30' },
+    { icon: FiGithub, link: 'https://github.com/daksh-prajapat', label: 'GitHub', color: 'hover:text-gray-900 dark:hover:text-white', bg: 'hover:bg-gray-100 dark:hover:bg-gray-800' },
+    { icon: FiLinkedin, link: 'https://www.linkedin.com/in/lokesh-prajapat-354352312', label: 'LinkedIn', color: 'hover:text-blue-600', bg: 'hover:bg-blue-50 dark:hover:bg-blue-950/30' },
     { icon: FiMail, link: 'https://mail.google.com/mail/?view=cm&fs=1&to=prajapatlokesh08112003@gmail.com', label: 'Gmail', color: 'hover:text-red-500', bg: 'hover:bg-red-50 dark:hover:bg-red-950/30' }
   ];
 
@@ -114,10 +100,10 @@ const Contact = () => {
   return (
     <section id="contact" className="relative py-20 lg:py-28 overflow-hidden scroll-mt-16 lg:scroll-mt-20 bg-white dark:bg-gray-950">
       
-      {/* Consistent Background - Same as Hero/About */}
+      {/* Consistent Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-950 dark:via-gray-900 dark:to-blue-950/20 -z-20" />
       
-      {/* Animated Background Orbs - Enhanced */}
+      {/* Animated Background Orbs */}
       <div className="absolute inset-0 -z-10">
         <motion.div
           animate={{ 
@@ -158,7 +144,7 @@ const Contact = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header - Same Style */}
+        {/* Section Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -201,18 +187,16 @@ const Contact = () => {
                 href={info.link || '#'}
                 target={info.link && info.link.includes('mail.google.com') ? '_blank' : info.link && info.link.startsWith('http') ? '_blank' : '_self'}
                 rel="noopener noreferrer"
-                className={`block ${!info.link ? 'cursor-default' : 'cursor-pointer'}`}
+                className={`block ${!info.link ? 'cursor-default' : 'cursor-pointer'} w-full`}
               >
                 <motion.div 
                   whileHover={{ y: -8, scale: 1.02 }}
                   className="group relative bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-200 dark:border-gray-800 overflow-hidden"
                 >
-                  {/* Animated Gradient Background on Hover */}
                   <motion.div 
                     className={`absolute inset-0 bg-gradient-to-r ${info.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} 
                   />
                   
-                  {/* Glow Effect */}
                   <div className={`absolute -inset-0.5 bg-gradient-to-r ${info.color} rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition duration-500`} />
                   
                   <div className="relative z-10 flex items-start gap-4">
@@ -244,7 +228,7 @@ const Contact = () => {
               </motion.a>
             ))}
 
-            {/* Social Links Section */}
+            {/* Social Links Section - Instagram Removed */}
             <motion.div
               variants={itemVariants}
               className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-800"
@@ -275,9 +259,10 @@ const Contact = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3, type: "spring", stiffness: 100 }}
+            className="w-full"
           >
             <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 lg:p-8 shadow-lg border border-gray-200 dark:border-gray-800">
-              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Send Me a Message</h3>
+              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center lg:text-left">Send Me a Message</h3>
               
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
                 <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.2 }}>
@@ -348,7 +333,6 @@ const Contact = () => {
                 </motion.button>
               </form>
 
-              {/* Response Time Note */}
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 1 } : {}}
