@@ -85,7 +85,7 @@ const Skills = () => {
     
     let interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % totalPages);
-    }, 3000); // 3 seconds me auto slide
+    }, 1500); // 1.5 seconds me auto slide
     
     const sliderElement = sliderRef.current;
     
